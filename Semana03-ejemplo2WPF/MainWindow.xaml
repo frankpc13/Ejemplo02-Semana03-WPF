@@ -27,7 +27,7 @@
                           BorderBrush="Gray" BorderThickness="5" SelectionChanged="DataGridCliente_SelectionChanged"/>
             </StackPanel>
             <StackPanel Margin="0,10,491.4,10.2" Width="478">
-                <DataGrid x:Name="DataGridPedido" Height="178" Margin="28,0,0.4,0" AutoGenerateColumns="True" GridLinesVisibility="Vertical" HeadersVisibility="All"
+                <DataGrid x:Name="DataGridPedido" Height="178" Margin="28,0,10.4,0" AutoGenerateColumns="True" GridLinesVisibility="Vertical" HeadersVisibility="All"
                           Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue"
                           BorderBrush="Gray" BorderThickness="5" SelectionChanged="DataGridPedido_SelectionChanged"/>
             </StackPanel>

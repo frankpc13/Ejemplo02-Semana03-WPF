@@ -75,14 +75,29 @@ namespace Semana03_ejemplo2WPF
             //usp_list_orders_by_client_and_employee_and_date
             SqlConnection connection = LeerCadena();
             connection.Open();
-            SqlDataAdapter sqlData = new SqlDataAdapter("usp_list_orders_by_client_and_employee_and_date3", connection);
+            SqlDataAdapter sqlData = new SqlDataAdapter("usp_list_orders_by_client_and_employee_and_dateV21", connection);
             sqlData.SelectCommand.CommandType = CommandType.StoredProcedure;
-            sqlData.SelectCommand.Parameters.AddWithValue("@year", year);
             sqlData.SelectCommand.Parameters.AddWithValue("@month", month);
+            sqlData.SelectCommand.Parameters.AddWithValue("@year", year);
             sqlData.SelectCommand.Parameters.AddWithValue("@employeeId", employeeId);
             sqlData.SelectCommand.Parameters.AddWithValue("@clientId", CustomerId);
             DataTable dataTable = new DataTable();
             sqlData.Fill(dataTable);
+            connection.Close();
+            return dataTable;
+        }
+
+        public DataTable getOrderDetailsByClient(int employeeId, string customerId, int orderId)
+        {
+            SqlConnection connection = LeerCadena();
+            connection.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter("usp_show_order_details_by_client", connection);
+            adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adapter.SelectCommand.Parameters.AddWithValue("@employeeId", employeeId);
+            adapter.SelectCommand.Parameters.AddWithValue("@clientId", customerId);
+            adapter.SelectCommand.Parameters.AddWithValue("@orderId", orderId);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
             connection.Close();
             return dataTable;
         }

@@ -75,7 +75,7 @@ namespace Semana03_ejemplo2WPF
                 aux = month.ToString();
             }
             int codEmployee = Convert.ToInt32(comboBoxEmployees.SelectedValue);
-            dataGridCliente.ItemsSource = obj.getClientsByCustomerperYearAndMonth(aux, year,codEmployee).DefaultView;
+            dataGridCliente.ItemsSource = obj.getClientsByCustomerperYearAndMonth(aux, year, codEmployee).DefaultView;
         }
 
         private void DataGridCliente_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -96,22 +96,43 @@ namespace Semana03_ejemplo2WPF
             {
                 string ID = (dataGridCliente.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 int codEmployee = Convert.ToInt32(comboBoxEmployees.SelectedValue);
-                DataGridPedido.ItemsSource = obj.getOrderByClientSelected(aux, year, codEmployee, ID).AsDataView();
+                DataGridPedido.ItemsSource = obj.getOrderByClientSelected(aux, year, codEmployee, ID).DefaultView;
                 textBoxTotalPedidos.Text = (DataGridPedido.Items.Count - 1).ToString();
             }
             catch (Exception error)
             {
-                MessageBox.Show("Se fue a la verga");
+                //MessageBox.Show("Se fue a la verga");
             }
-            //int customerId = Convert.ToInt32((dataGridCliente.SelectedCells[0].Column.GetCellContent(row) as TextBlock).Text);
-            
+
         }
 
         private void DataGridPedido_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             object item = DataGridPedido.SelectedItem;
-            string ID = (DataGridPedido.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            MessageBox.Show(ID);
+            int orderId = Convert.ToInt32((DataGridPedido.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text);
+            item = dataGridCliente.SelectedItem;
+            string clientId = (dataGridCliente.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            int codEmployee = Convert.ToInt32(comboBoxEmployees.SelectedValue);
+            dataGridDetallePedido.ItemsSource = obj.getOrderDetailsByClient(codEmployee, clientId, orderId).DefaultView;
+            try
+            {
+                int total = 0, quantity = 0;
+
+                for (int i = 0; i < dataGridDetallePedido.Items.Count - 1; i++)
+                {
+                    total += (Int32.Parse((dataGridDetallePedido.Columns[4].GetCellContent(dataGridDetallePedido.Items[i]) as TextBlock).Text));
+
+                    quantity += (Int32.Parse((dataGridDetallePedido.Columns[3].GetCellContent(dataGridDetallePedido.Items[i]) as TextBlock).Text));
+                }
+                textBoxTotalAmount.Text = total.ToString();
+                textBoxProductTotal.Text = quantity.ToString();
+            }
+            catch (Exception)
+            {
+
+            }
+                
         }
+        
     }
 }
