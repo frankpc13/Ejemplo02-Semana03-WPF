@@ -1,0 +1,56 @@
+﻿<Window x:Class="Semana03_ejemplo2WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Semana03_ejemplo2WPF"
+        mc:Ignorable="d"
+        Title="Sistema Empresarial" Height="691.89" Width="800" Loaded="Window_Loaded">
+    <Grid Margin="0,0,-0.4,-3.6">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="774">
+            <Label Content="Lista de años de pedido"/>
+            <ComboBox x:Name="comboBoxYearListOrders" Margin="16,0,0,16" Width="131" SelectionChanged="ComboBoxYearListOrders_SelectionChanged"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,48,-0.4,337">
+            <Label Content="Lista de meses de pedido"/>
+            <ComboBox x:Name="comboBoxMonthListOrders" Margin="16,0,0,248.8" Width="131" SelectionChanged="ComboBoxMonthListOrders_SelectionChanged"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="46" Margin="0,83,0,0" VerticalAlignment="Top" Width="784">
+            <Label Content="Lista de empleados" Margin="0,0,0,0"/>
+            <ComboBox x:Name="comboBoxEmployees" Margin="16,0,0,21.6" Width="148"/>
+            <Button Content="Mostrar Lista" Width="89" Margin="16,0,0,15.6" Click="Button_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="199" Margin="10,129,0,0" VerticalAlignment="Top" Width="774">
+            <StackPanel Margin="0,10,0,0.8" Width="286" >
+                <DataGrid x:Name="dataGridCliente" Height="177" Margin="0,0,0.4,0" AutoGenerateColumns="True" GridLinesVisibility="Vertical" HeadersVisibility="All"
+                          Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue"
+                          BorderBrush="Gray" BorderThickness="5" SelectionChanged="DataGridCliente_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="0,10,491.4,10.2" Width="478">
+                <DataGrid x:Name="DataGridPedido" Height="178" Margin="28,0,0.4,0" AutoGenerateColumns="True" GridLinesVisibility="Vertical" HeadersVisibility="All"
+                          Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue"
+                          BorderBrush="Gray" BorderThickness="5" SelectionChanged="DataGridPedido_SelectionChanged"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,330,-0.4,306.4">
+            <Label Content="Nro. de Pedidos" Margin="0,0,0,-19.4" Height="45" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="textBoxTotalPedidos" Width="172" Margin="0,0,32,0"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Orientation="Vertical" Margin="0,372,26.6,0.4" Width="667">
+            <DataGrid x:Name="dataGridDetallePedido" HorizontalAlignment="Right" Height="198" Margin="0,0,0.2,0" VerticalAlignment="Top" Width="460"
+                      AutoGenerateColumns="True" GridLinesVisibility="Vertical" HeadersVisibility="All"
+                          Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue"
+                          BorderBrush="Gray" BorderThickness="5"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="Cantidad de Productos Totales"></Label>
+                <TextBox x:Name="textBoxProductTotal" Width="123"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="Monto Total"></Label>
+                <TextBox x:Name="textBoxTotalAmount" Width="123"></TextBox>
+            </StackPanel>
+        </StackPanel>
+
+
+    </Grid>
+</Window>
